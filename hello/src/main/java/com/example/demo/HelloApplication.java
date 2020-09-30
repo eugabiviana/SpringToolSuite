@@ -1,0 +1,16 @@
+package com.example.demo;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class HelloApplication {
+	
+/* Essa é a classe que deve ficar o mais limpo possível! */
+	
+	
+	public static void main(String[] args) {
+		SpringApplication.run(HelloApplication.class, args);
+	}
+
+}
