@@ -1,5 +1,7 @@
 package com.servico.demo;
 
+//Essa é uma classe já pronta! Sempre que precisar dela, copiar essa documentação. A única coisa que muda, é o nome do package.
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
