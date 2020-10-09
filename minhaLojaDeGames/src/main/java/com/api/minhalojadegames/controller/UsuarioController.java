@@ -15,47 +15,40 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.api.minhalojadegames.model.Produto;
-import com.api.minhalojadegames.repository.ProdutoRepository;
-
+import com.api.minhalojadegames.model.Usuario;
+import com.api.minhalojadegames.repository.UsuarioRepository;
 
 @RestController
 @CrossOrigin(origins = "*", allowedHeaders = "*")
-@RequestMapping("/produto")
-public class ProdutoController {
-	
+@RequestMapping("/usuario")
+public class UsuarioController {
+
 	@Autowired
-	private ProdutoRepository repository;
-	
+	private UsuarioRepository repository;
+
 	@GetMapping
-	public ResponseEntity<List<Produto>> getAll(){
+	public ResponseEntity<List<Usuario>> getAll() {
 		return ResponseEntity.ok(repository.findAll());
 	}
-	
+
 	@GetMapping("/{id}")
-	public ResponseEntity<Produto> getById(@PathVariable long id){
-		return repository.findById(id).map(resp -> ResponseEntity.ok(resp))
-				.orElse(ResponseEntity.notFound().build());
+	public ResponseEntity<Usuario> getById(@PathVariable String id) {
+		return repository.findById(id).map(resp -> ResponseEntity.ok(resp)).orElse(ResponseEntity.notFound().build());
 	}
-	
-	@GetMapping("/titulo/{titulo}")
-	public ResponseEntity<List<Produto>> getByTitulo(@PathVariable String titulo){
-		return ResponseEntity.ok(repository.findAllByTituloIgnoreCase(titulo));
-	}
-	
+
 	@PostMapping
-	public ResponseEntity<Produto> post (@RequestBody Produto titulo){
-		return ResponseEntity.status(HttpStatus.CREATED).body(repository.save(titulo));
+	public ResponseEntity<Usuario> post(@RequestBody Usuario usuario) {
+		return ResponseEntity.status(HttpStatus.CREATED).body(repository.save(usuario));
 	}
-	
+
 	@PutMapping
-	public ResponseEntity<Produto> put (@RequestBody Produto titulo){
-		return ResponseEntity.status(HttpStatus.CREATED).body(repository.save(titulo));
+	public ResponseEntity<Usuario> put(@RequestBody Usuario usuario) {
+		return ResponseEntity.status(HttpStatus.CREATED).body(repository.save(usuario));
 	}
-	
+
 	@DeleteMapping("/{id}")
-	public void delete(@PathVariable long id) {
+	public void delete(@PathVariable String id) {
 		repository.deleteById(id);
 	}
-	
+
 }
