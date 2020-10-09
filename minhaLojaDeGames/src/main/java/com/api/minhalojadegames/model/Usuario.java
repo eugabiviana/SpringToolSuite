@@ -3,7 +3,7 @@ package com.api.minhalojadegames.model;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "Usuario")
+@Table(name = "usuario")
 public class Usuario {
 
 	@Id

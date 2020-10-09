@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.api.minhalojadegames.model.Usuario;
 import com.api.minhalojadegames.repository.UsuarioRepository;
 
+
 @RestController
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RequestMapping("/usuario")
@@ -32,7 +33,7 @@ public class UsuarioController {
 	}
 
 	@GetMapping("/{id}")
-	public ResponseEntity<Usuario> getById(@PathVariable String id) {
+	public ResponseEntity<Usuario> getById(@PathVariable Long id) {
 		return repository.findById(id).map(resp -> ResponseEntity.ok(resp)).orElse(ResponseEntity.notFound().build());
 	}
 
@@ -42,12 +43,13 @@ public class UsuarioController {
 	}
 
 	@PutMapping
-	public ResponseEntity<Usuario> put(@RequestBody Usuario usuario) {
+	public ResponseEntity<Usuario> put(@PathVariable Long id, @RequestBody Usuario usuario) {
+		usuario.setId(id);
 		return ResponseEntity.status(HttpStatus.CREATED).body(repository.save(usuario));
 	}
 
 	@DeleteMapping("/{id}")
-	public void delete(@PathVariable String id) {
+	public void delete(@PathVariable Long id) {
 		repository.deleteById(id);
 	}
 

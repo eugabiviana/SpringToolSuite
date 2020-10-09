@@ -3,14 +3,13 @@ package com.api.minhalojadegames.repository;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-import com.api.minhalojadegames.model.Produto;
 import com.api.minhalojadegames.model.Usuario;
 
-public interface UsuarioRepository extends JpaRepository<Usuario, String> {
+@Repository
+public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
 
-	public List<Produto> findAllByUsuarioIgnoreCase(String usuario);
-	
-	public List<Produto> findAllByIdIgnoreCase(String id);
-	
+	public List<Usuario> findAllByUsuarioContainingIgnoreCase(String usuario);
+
 }
