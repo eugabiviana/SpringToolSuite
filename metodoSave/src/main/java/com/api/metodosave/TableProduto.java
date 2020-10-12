@@ -3,7 +3,7 @@ import javax.persistence.*;
 
 
 @Entity
-public class Produto {	
+public class TableProduto {	
 	private Long id;
 	private String nome;
 	private String marca;
@@ -43,12 +43,13 @@ public class Produto {
 	public void setPreco(float preco) {
 		this.preco = preco;
 	}
+	
 	//constructor 
-	protected Produto() {
+	protected TableProduto() {
 		
 	}
 	
-	protected Produto (Long id, String nome, String marca, String criado_em, float preco) {
+	protected TableProduto (Long id, String nome, String marca, String criado_em, float preco) {
 		super();
 		this.id = id;
 		this.nome = nome;

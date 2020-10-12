@@ -5,16 +5,14 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
-@Transactional
+@Transactional //evita dados inconsistentes
 public class ProdutoService {
 
-	@Autowired
-	private ProdutoRepository repo;
-	
-	public void save(Produto produto) {
+	@Autowired // injetanto o Repository no Service através dessa annotation
+	private ProdutoRepository repo; 
+
+	public void save(TableProduto produto) {
 		repo.save(produto);
 	}
 
- 
-	
 }

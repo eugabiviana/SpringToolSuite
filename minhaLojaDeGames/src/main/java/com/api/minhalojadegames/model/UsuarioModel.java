@@ -1,28 +1,26 @@
 package com.api.minhalojadegames.model;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
-@Table(name = "categoria")
-public class Categoria {
+@Table(name = "usuario")
+public class UsuarioModel {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@Column(name="Nome")
+	@NotNull
+	@Size(min = 5, max = 100)
 	private String nome;
 	
-	@Column(name="Categoria") // tipo de jogo: aventura, luta, lógica etc.
-	private String categoria;
-	
-	@Column(name = "Descrição")
-	private String descricao;
+	private double idade;
 
 	//Getters and Setters
 	public Long getId() {
@@ -41,20 +39,12 @@ public class Categoria {
 		this.nome = nome;
 	}
 
-	public String getCategoria() {
-		return categoria;
+	public double getIdade() {
+		return idade;
 	}
 
-	public void setCategoria(String categoria) {
-		this.categoria = categoria;
-	}
-
-	public String getDescricao() {
-		return descricao;
-	}
-
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
+	public void setIdade(double idade) {
+		this.idade = idade;
 	}
 	
 }

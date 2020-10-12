@@ -3,7 +3,6 @@ package com.api.minhalojadegames.model;
 import java.util.List;
 
 import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -11,26 +10,30 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-
-
 @Entity
-@Table(name="tb_produto")
-public class Produto {
+@Table(name = "categoria")
+public class CategoriaModel {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@Column(name="Titulo")
 	@NotNull
-	private String titulo;
+	@Size(min = 5, max = 100)
+	private String nome;
 	
-	@OneToMany(mappedBy = "produto", cascade = CascadeType.ALL)
-	@JsonIgnoreProperties("produto")
-	private List<Produto> produto;
+	@NotNull
+	@Size(min = 5, max = 100)
+ 	private String tema; // tipo de jogo: aventura, luta, lógica etc.
+	
+	//Foreign key do meu Model
+	@OneToMany(mappedBy="categoria", cascade=CascadeType.ALL)
+	@JsonIgnoreProperties("categoria")
+	private List<ProdutoModel> produtos;
 
 	//Getters and Setters
 	public Long getId() {
@@ -41,20 +44,20 @@ public class Produto {
 		this.id = id;
 	}
 
-	public String getTitulo() {
-		return titulo;
+	public String getNome() {
+		return nome;
 	}
 
-	public void setTitulo(String titulo) {
-		this.titulo = titulo;
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
-	public List<Produto> getProduto() {
-		return produto;
+	public String getTema() {
+		return tema;
 	}
 
-	public void setProduto(List<Produto> produto) {
-		this.produto = produto;
+	public void setTema(String tema) {
+		this.tema = tema;
 	}
-	
+		
 }

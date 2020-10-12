@@ -3,11 +3,13 @@ package com.api.minhalojadegames.repository;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-import com.api.minhalojadegames.model.Produto;
+import com.api.minhalojadegames.model.ProdutoModel;
 
-public interface ProdutoRepository extends JpaRepository<Produto, Long>{
+@Repository
+public interface ProdutoRepository extends JpaRepository<ProdutoModel, Long>{
 
-	public List<Produto> findAllByTituloIgnoreCase(String titulo);
+	public List<ProdutoModel> findByNome(String nome);
 	
 }

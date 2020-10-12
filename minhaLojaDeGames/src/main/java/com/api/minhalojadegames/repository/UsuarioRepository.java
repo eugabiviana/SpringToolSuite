@@ -5,11 +5,11 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.api.minhalojadegames.model.Usuario;
+import com.api.minhalojadegames.model.UsuarioModel;
 
 @Repository
-public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
+public interface UsuarioRepository extends JpaRepository<UsuarioModel, Long> {
 
-	public List<Usuario> findAllByUsuarioContainingIgnoreCase(String usuario);
+	public List<UsuarioModel> findByNome(String nome);
 
 }

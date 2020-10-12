@@ -3,8 +3,6 @@ package com.api.minhalojadegames.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,45 +10,46 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.api.minhalojadegames.model.Usuario;
+import com.api.minhalojadegames.model.UsuarioModel;
 import com.api.minhalojadegames.repository.UsuarioRepository;
 
 
 @RestController
-@CrossOrigin(origins = "*", allowedHeaders = "*")
-@RequestMapping("/usuario")
+@CrossOrigin("*")
 public class UsuarioController {
 
 	@Autowired
 	private UsuarioRepository repository;
 
-	@GetMapping
-	public ResponseEntity<List<Usuario>> getAll() {
-		return ResponseEntity.ok(repository.findAll());
+	@GetMapping("/usuarios")
+	public List<UsuarioModel> getAll() {
+		return repository.findAll();
 	}
 
-	@GetMapping("/{id}")
-	public ResponseEntity<Usuario> getById(@PathVariable Long id) {
-		return repository.findById(id).map(resp -> ResponseEntity.ok(resp)).orElse(ResponseEntity.notFound().build());
+	@GetMapping("/usuarios/nome/{nome}")
+	public List<UsuarioModel> getById(@PathVariable String nome) {
+		return repository.findByNome(nome);				
 	}
 
-	@PostMapping
-	public ResponseEntity<Usuario> post(@RequestBody Usuario usuario) {
-		return ResponseEntity.status(HttpStatus.CREATED).body(repository.save(usuario));
+	@PostMapping("/usuarios")
+	public UsuarioModel post(@RequestBody UsuarioModel model) {
+		repository.save(model);
+		return model;
 	}
 
-	@PutMapping
-	public ResponseEntity<Usuario> put(@PathVariable Long id, @RequestBody Usuario usuario) {
-		usuario.setId(id);
-		return ResponseEntity.status(HttpStatus.CREATED).body(repository.save(usuario));
+	@PutMapping("/usuarios/{id}")
+	public UsuarioModel put(@PathVariable Long id, @RequestBody UsuarioModel model) {
+		model.setId(id);
+		repository.save(model);
+		return model;
 	}
 
-	@DeleteMapping("/{id}")
-	public void delete(@PathVariable Long id) {
+	@DeleteMapping("/usuarios/{id}")
+	public String delete(@PathVariable Long id) {
 		repository.deleteById(id);
+		return "Sucesso!";
 	}
 
 }
