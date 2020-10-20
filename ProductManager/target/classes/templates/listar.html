@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+
+</head>
+<body>
+	<div>
+		<table border="1">
+			<tread>
+			<tr>
+			<th>ID</th>
+			<th>Nome</th>
+			<th>Marca</th>
+			<th>Criado em</th>
+			<th>Preço</th>
+			<th>Ação</th>
+			</tread>
+
+			<tbody>
+				<tr th:each="produtinho : ${listaprodutosview}">
+					<td th:text="${produtinho.id}">AA1234</td>
+					<td th:text="${produtinho.nome}">Aqui vem o nome</td>
+
+					<td th:text="${produtinho.marca}">Aqui vem a marca</td>
+					<td th:text="${produtinho.criado_em}">...Data</td>
+					<td th:text="${produtinho.preco}">R...Valor</td>
+					<td>
+						<button value="editar">Editar</button>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</body>
+</html>
